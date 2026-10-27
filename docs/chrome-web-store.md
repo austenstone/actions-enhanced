@@ -147,7 +147,7 @@ gcloud iam workload-identity-pools providers create-oidc actions-enhanced \
   --workload-identity-pool=github \
   --issuer-uri="https://token.actions.githubusercontent.com" \
   --attribute-mapping="google.subject=assertion.sub,attribute.repository_id=assertion.repository_id" \
-  --attribute-condition="assertion.repository_id == '1435242138' && assertion.repository_owner_id == '22425467' && assertion.ref == 'refs/heads/main' && assertion.sub == 'repo:austenstone/actions-enhanced:environment:chrome-web-store' && assertion.workflow_ref == 'austenstone/actions-enhanced/.github/workflows/publish-chrome.yml@refs/heads/main' && assertion.event_name == 'workflow_dispatch'"
+  --attribute-condition="assertion.repository_id == '1435242138' && assertion.repository_owner_id == '22425467' && assertion.ref == 'refs/heads/main' && assertion.sub == 'repo:austenstone@22425467/actions-enhanced@1435242138:environment:chrome-web-store' && assertion.workflow_ref == 'austenstone/actions-enhanced/.github/workflows/publish-chrome.yml@refs/heads/main' && assertion.event_name == 'workflow_dispatch'"
 
 gcloud iam service-accounts add-iam-policy-binding "$SERVICE_ACCOUNT" \
   --project="$PROJECT_ID" \
@@ -166,6 +166,11 @@ this exact workflow on `main`, manual dispatch, and the named environment.
 Forks and other workflows do not qualify. If adapting this project, replace those
 identity values intentionally. Do not grant the service account Editor or Owner;
 the IAM binding above only lets the constrained GitHub identity impersonate it.
+
+This repository uses immutable OIDC subjects, so the subject includes the owner
+and repository numeric IDs. Check the live configuration with
+`gh api repos/austenstone/actions-enhanced/actions/oidc/customization/sub`
+before adapting the condition; do not assume the older name-only subject.
 
 In the [Chrome Web Store developer dashboard](https://chrome.google.com/webstore/devconsole/),
 add the service account email under **Account**. This grants access to the
