@@ -1,0 +1,101 @@
+name: Publish Chrome extension
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Upload only, stage after review, or publish after review
+        type: choice
+        default: upload
+        options:
+          - upload
+          - stage
+          - publish
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chrome-web-store
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck && npm run lint && npm test && npm run test:store
+      - run: npm run zip
+      - name: Verify package version
+        run: |
+          node --input-type=module <<'JS'
+          import { readFileSync } from 'node:fs';
+          const { version } = JSON.parse(readFileSync('package.json', 'utf8'));
+          const manifest = JSON.parse(readFileSync('.output/chrome-mv3/manifest.json', 'utf8'));
+          if (manifest.version !== version) throw new Error('Package and manifest versions differ');
+          JS
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: chrome-package
+          path: .output/*-chrome.zip
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+
+  upload:
+    needs: build
+    runs-on: ubuntu-slim
+    timeout-minutes: 10
+    environment:
+      name: chrome-web-store
+      url: https://chrome.google.com/webstore/devconsole/60956338-9736-466f-8e9f-03594fd4ea1a/fbokfihbkhamfknoheebpgpanonpkcjc/edit
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      CWS_PUBLISHER_ID: ${{ vars.CWS_PUBLISHER_ID }}
+      CWS_EXTENSION_ID: fbokfihbkhamfknoheebpgpanonpkcjc
+      CWS_WORKLOAD_IDENTITY_PROVIDER: ${{ vars.CWS_WORKLOAD_IDENTITY_PROVIDER }}
+      CWS_SERVICE_ACCOUNT: ${{ vars.CWS_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: chrome-package
+          path: store-package
+      - name: Check publishing configuration
+        run: |
+          node --input-type=module <<'JS'
+          for (const name of ['CWS_PUBLISHER_ID', 'CWS_WORKLOAD_IDENTITY_PROVIDER', 'CWS_SERVICE_ACCOUNT']) {
+            if (!process.env[name]) throw new Error(`Missing chrome-web-store environment variable: ${name}`);
+          }
+          JS
+      - id: google
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
+        with:
+          workload_identity_provider: ${{ env.CWS_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.CWS_SERVICE_ACCOUNT }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/chromewebstore
+          create_credentials_file: false
+          export_environment_variables: false
+      - name: Upload and optionally submit
+        env:
+          CWS_ACCESS_TOKEN: ${{ steps.google.outputs.access_token }}
+          CWS_MODE: ${{ inputs.mode }}
+        run: node scripts/publish-chrome.mjs
