@@ -194,6 +194,10 @@ rebuilds the extension and refreshes matching tabs automatically.
 
 ## Privacy and limitations
 
+See the [privacy policy](PRIVACY.md) for data access, local caching and network
+requests. Store listing material is maintained in the
+[Chrome Web Store guide](docs/chrome-web-store.md).
+
 Search covers only items already loaded on the current page, not all repository
 history or complete job logs. It matches available titles, workflow names,
 branches, actors, run numbers, and statuses. Run-list filters reset on navigation.
