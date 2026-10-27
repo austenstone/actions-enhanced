@@ -1,0 +1,121 @@
+[data-actions-enhanced="run-views"] {
+  margin-block: 16px;
+}
+
+.ae-run-views .UnderlineNav-body {
+  flex-wrap: wrap;
+}
+
+.ae-run-views .CounterLabel {
+  display: inline-flex;
+  margin-inline-start: 6px;
+  align-items: center;
+  gap: 4px;
+}
+
+.ae-annotation-counts {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ae-annotation-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.ae-run-views .ae-annotation-count + .ae-annotation-count {
+  margin-inline-start: 8px;
+}
+
+.ae-run-views .ae-run-view-description {
+  margin-block: 12px;
+}
+
+.ae-table-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+}
+
+.ae-run-views .ae-run-table,
+.ae-run-views .ae-run-table-scroll {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.ae-run-views .ae-run-table table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.ae-run-views .ae-run-table th:nth-child(1) {
+  width: 28%;
+}
+
+.ae-run-views .ae-run-table th:nth-child(3) {
+  width: 72px;
+}
+
+.ae-run-views .ae-run-table th:nth-child(4) {
+  width: 88px;
+}
+
+.ae-run-views .ae-run-table td:not([colspan]),
+.ae-run-views .ae-run-table td > a {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ae-run-views .ae-run-table td > a {
+  display: block;
+}
+
+.ae-run-views .ae-run-table td[colspan] {
+  overflow-wrap: anywhere;
+}
+
+.ae-table-status {
+  vertical-align: middle;
+  color: var(--fgColor-muted);
+}
+
+.ae-table-status-success {
+  color: var(--fgColor-success);
+}
+
+.ae-table-status-failure {
+  color: var(--fgColor-danger);
+}
+
+.ae-table-status-in_progress,
+.ae-table-status-queued {
+  color: var(--fgColor-attention);
+}
+
+.ae-run-views table {
+  border-collapse: collapse;
+}
+
+.ae-run-views caption,
+.ae-run-views th,
+.ae-run-views td {
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.ae-run-views td,
+.ae-run-views th {
+  border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
+}
+
+.ae-run-views .ae-run-table-group th {
+  background: var(--bgColor-muted, var(--color-canvas-subtle));
+  font-weight: 600;
+}
+
+.ae-run-views tr[data-ae-selected] {
+  background: var(--bgColor-accent-muted);
+}

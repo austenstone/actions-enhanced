@@ -1,0 +1,45 @@
+page-header .PageHeader-titleBar > .ae-job-header-facts {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 0 1 auto;
+  overflow: hidden;
+}
+page-header .ae-job-header-facts > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+page-header .PageHeader-titleBar > .ae-job-header-facts[hidden] {
+  display: none;
+}
+[data-ae-workspace] .ae-job-inspector-details {
+  padding: 16px 0;
+}
+[data-ae-workspace] .ae-job-inspector-details[hidden],
+[data-ae-workspace] [data-ae-detail-tab="details"] [data-ae-detail-panel="log"],
+[data-ae-workspace]
+  [data-ae-detail-tab="details"]
+  [data-ae-detail-panel="annotations"],
+[data-ae-workspace] [data-ae-detail-tab="log"] [data-ae-detail-panel="details"],
+[data-ae-workspace]
+  [data-ae-detail-tab="annotations"]
+  [data-ae-detail-panel="details"] {
+  display: none;
+}
+[data-actions-enhanced="job-duration"] {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: auto;
+  padding-left: 8px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+nav[aria-label="Workflow run"] a:has(> [data-actions-enhanced="job-duration"]) {
+  position: relative;
+  padding-right: 64px !important;
+}

@@ -1,0 +1,138 @@
+.ae-job-steps-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--borderRadius-medium, 6px);
+  background: transparent;
+  color: var(--fgColor-muted);
+  cursor: pointer;
+  vertical-align: middle;
+}
+.ae-job-steps-toggle:hover {
+  background: var(--bgColor-neutral-muted);
+}
+.ae-job-steps-toggle:focus-visible {
+  outline: 2px solid var(--focus-outlineColor, var(--fgColor-accent));
+  outline-offset: -2px;
+}
+.ae-job-steps-toggle svg {
+  fill: currentColor;
+  transform: rotate(0deg);
+  transition: transform 80ms ease-out;
+}
+.ae-job-steps-toggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+.ae-job-steps-message {
+  margin: 0;
+  padding: 6px 8px 6px 40px;
+}
+.ae-job-steps-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ae-job-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding-inline: 40px 8px;
+}
+.ae-job-step-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+.ae-job-step-label a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ae-job-step-status,
+.ae-job-step-duration {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.ae-job-step-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ae-job-step-dot,
+.ae-job-step-bar {
+  background-color: var(--fgColor-muted);
+}
+.ae-job-step-passed {
+  background-color: var(--bgColor-success-emphasis, #1a7f37);
+}
+.ae-job-step-failed {
+  background-color: var(--bgColor-danger-emphasis, #cf222e);
+}
+.ae-job-step-in_progress {
+  background-color: var(--bgColor-accent-emphasis, #0969da);
+}
+.ae-run-table-steps > td {
+  padding: 0;
+}
+.ae-job-steps-timeline {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--borderColor-muted);
+}
+.ae-job-steps-timeline .ae-job-step {
+  display: grid;
+  grid-template-columns: var(--ae-label-width) minmax(0, 1fr);
+  gap: 0;
+  padding: 0;
+}
+.ae-job-steps-timeline .ae-job-step-label {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  align-self: stretch;
+  padding: 6px 8px 6px 32px;
+  background: var(--bgColor-default);
+  border-right: 1px solid var(--borderColor-muted);
+}
+.ae-job-step-lane {
+  position: relative;
+  padding: 6px 80px 6px 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ae-job-step-lane:has(.ae-job-step-track) {
+  overflow: visible;
+}
+.ae-job-step-track {
+  position: relative;
+  height: 20px;
+}
+.ae-job-step-elapsed {
+  position: absolute;
+  top: 1px;
+  margin-left: 8px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.ae-job-step-bar {
+  position: absolute;
+  top: 6px;
+  height: 8px;
+  min-width: 2px;
+  border-radius: var(--borderRadius-small, 4px);
+}
+.ae-run-table-job {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}

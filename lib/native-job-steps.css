@@ -1,0 +1,141 @@
+.ae-native-job-steps {
+  margin: 0 8px 0 32px;
+}
+nav[aria-label="Workflow run"] li:has(> .ae-native-job-steps) {
+  position: relative;
+}
+nav[aria-label="Workflow run"] li:has(> .ae-native-job-steps) > a {
+  padding-left: 32px !important;
+}
+.ae-native-job-steps > summary {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  list-style: none;
+  cursor: pointer;
+  border-radius: var(--borderRadius-small);
+}
+.ae-native-job-steps > summary::-webkit-details-marker {
+  display: none;
+}
+.ae-native-job-steps > summary svg {
+  transform: rotate(0deg);
+}
+.ae-native-job-steps[open] > summary svg {
+  transform: rotate(180deg);
+}
+.ae-native-job-steps > summary:hover {
+  background: var(--bgColor-neutral-muted);
+}
+nav[aria-label="Workflow run"]
+  button[aria-expanded]
+  > [data-component="ActionList.Item--DividerContainer"] {
+  display: contents;
+}
+nav[aria-label="Workflow run"]
+  button[aria-expanded]
+  [data-component="ActionList.TrailingVisual"] {
+  order: -1;
+}
+nav[aria-label="Workflow run"]
+  button[aria-expanded]
+  [data-component="ActionList.Item.Label"] {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+nav[aria-label="Workflow run"] [data-component="NavList.SubNav"] {
+  margin-left: 16px;
+  padding-left: 12px;
+  border-left: 1px solid var(--borderColor-muted);
+}
+.ae-native-step-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 12px;
+  border-left: 1px solid var(--borderColor-muted);
+}
+.ae-native-step-list > li {
+  position: relative;
+}
+.ae-native-step-list > li::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  left: -12px;
+  top: 50%;
+  border-top: 1px solid var(--borderColor-muted);
+}
+.ae-native-step-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  padding: 4px 8px;
+  color: var(--fgColor-default);
+  border-radius: var(--borderRadius-small);
+}
+.ae-native-step-link:hover {
+  background: var(--bgColor-muted);
+  text-decoration: none;
+}
+.ae-native-step-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ae-native-step-status {
+  width: 16px;
+  flex: none;
+  text-align: center;
+  color: var(--fgColor-muted);
+}
+.ae-native-step-status.ae-step-success {
+  color: var(--fgColor-success);
+}
+.ae-native-step-status.ae-step-failure {
+  color: var(--fgColor-danger);
+}
+.ae-native-step-link[aria-current="step"] {
+  background: var(--bgColor-accent-muted);
+  outline: 2px solid var(--focus-outlineColor, var(--fgColor-accent));
+  outline-offset: -2px;
+}
+nav[aria-label="Workflow run"]
+  button[data-component="NavList.Item"][aria-expanded] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 4px 8px;
+  text-align: left;
+}
+nav[aria-label="Workflow run"]
+  button[data-component="NavList.Item"][aria-expanded]
+  > [class*="Spacer"] {
+  display: none;
+}
+nav[aria-label="Workflow run"]
+  button[data-component="NavList.Item"][aria-expanded]
+  > [data-component="ActionList.LeadingVisual"],
+nav[aria-label="Workflow run"]
+  button[data-component="NavList.Item"][aria-expanded]
+  [data-component="ActionList.TrailingVisual"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: static;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 24px;
+  margin: 0;
+  transform: none;
+}

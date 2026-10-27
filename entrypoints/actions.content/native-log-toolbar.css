@@ -1,0 +1,22 @@
+.ae-native-log-toolbar {
+  position: sticky;
+  top: var(--ae-native-log-toolbar-top, 44px);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 36px;
+  padding: 2px 8px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  background: var(--bgColor-default);
+  color: var(--fgColor-default);
+  border-bottom: 1px solid var(--borderColor-default);
+}
+.ae-native-log-toolbar > button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.ae-native-log-toolbar > [hidden] {
+  display: none;
+}

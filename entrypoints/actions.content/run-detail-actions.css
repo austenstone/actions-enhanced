@@ -1,0 +1,81 @@
+.PageHeader-titleBar > .ae-run-detail-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--base-size-4, 4px);
+  margin-inline-start: auto;
+  padding-inline-start: var(--base-size-8, 8px);
+  width: max-content;
+  position: static;
+  align-self: center;
+}
+
+.ae-run-detail-actions > a.ae-run-detail-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-width: 32px;
+  min-height: 32px;
+  margin: 0;
+  padding: 6px;
+  border: 1px solid transparent;
+  border-radius: var(--borderRadius-medium);
+  color: var(--fgColor-muted, var(--color-fg-muted));
+  font-size: 0 !important;
+  line-height: 1;
+  text-decoration: none;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  column-gap: 0;
+  grid-template-columns: none;
+}
+
+.ae-run-detail-actions > a.ae-run-detail-action > span {
+  display: none;
+}
+
+.ae-run-detail-actions > a.ae-run-detail-action > span:has(svg) {
+  display: inline-flex;
+  position: static;
+  margin: 0;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  transform: none;
+}
+
+.ae-run-detail-actions > a.ae-run-detail-action svg {
+  flex-shrink: 0;
+  margin: 0 !important;
+  fill: currentColor;
+}
+
+.ae-run-detail-actions > a.ae-run-detail-action:hover {
+  color: var(--fgColor-default, var(--color-fg-default));
+  background: var(
+    --control-transparent-bgColor-hover,
+    var(--color-action-list-item-default-hover-bg)
+  );
+}
+
+.ae-run-detail-actions > a.ae-run-detail-action:focus-visible {
+  outline: 2px solid var(--focus-outlineColor, var(--color-accent-fg));
+  outline-offset: 2px;
+}
+
+@media (max-width: 543px) {
+  .PageHeader-titleBar > .ae-run-detail-actions {
+    gap: 0;
+    padding-inline-start: 4px;
+  }
+}
+[data-ae-run-detail-empty] {
+  display: none !important;
+}

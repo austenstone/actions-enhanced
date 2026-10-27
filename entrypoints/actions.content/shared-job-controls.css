@@ -1,0 +1,84 @@
+.ae-job-controls {
+  margin-block: 8px 12px;
+}
+
+.ae-job-controls-toolbar {
+  display: flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ae-job-controls-count {
+  margin: 0;
+}
+
+.ae-job-controls-menus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ae-job-controls-menu {
+  position: relative;
+}
+
+.ae-job-controls-menu > summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.ae-job-controls-menu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ae-job-controls-popover {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  right: 0;
+  display: grid;
+  min-width: 220px;
+  gap: 8px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--borderColor-default, var(--color-border-default));
+  border-radius: 6px;
+  background: var(--bgColor-default, var(--color-canvas-default));
+  box-shadow: var(--shadow-floating-small);
+}
+
+.ae-job-controls-popover legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.ae-job-controls-popover label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.ae-job-controls-popover label span {
+  margin-left: auto;
+  color: var(--fgColor-muted, var(--color-fg-muted));
+}
+
+.ae-job-controls-popover input {
+  margin: 0;
+}
+
+body [data-ae-filtered-job] {
+  display: none !important;
+}
+
+nav[aria-label="Workflow run"] button[data-ae-native-job-filter] {
+  margin-inline-start: auto;
+}

@@ -1,0 +1,23 @@
+.ae-run-detail-empty {
+  padding: 16px;
+}
+split-page-layout[data-ae-workspace][data-ae-has-job="false"]
+  .PageLayout-columns {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+split-page-layout[data-ae-workspace][data-ae-has-job="false"]
+  .PageLayout-content {
+  display: none;
+}
+split-page-layout[data-ae-workspace][data-ae-has-job="false"] .PageLayout-pane {
+  grid-area: 1 / 1 / 2 / -1 !important;
+  height: var(--ae-workspace-height) !important;
+  max-height: none;
+  visibility: visible;
+  pointer-events: auto;
+}
+[data-ae-workspace][data-ae-has-job="false"]
+  .PageLayout-content
+  .ae-job-detail-tabs {
+  display: none;
+}
